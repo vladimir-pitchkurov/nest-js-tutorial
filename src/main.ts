@@ -3,6 +3,9 @@ import { NestExpressApplication } from "@nestjs/platform-express";
 import { AppModule } from './app.module';
 import { join } from 'path';
 
+/**
+ *  Start App In development mode:  npm run start:dev
+ * */
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
