@@ -1,12 +1,17 @@
 import { Controller, Get, Param, Render, Res } from '@nestjs/common';
 import { FirstService } from "../../services/first/first.service";
 import { Response } from "express";
+import { UsersService } from "../../users/users.service";
+import { Users } from "../../entities/Users";
 
 
 // Docs:   https://docs.nestjs.com/controllers
 @Controller('first-controller')
 export class FirstControllerController {
-    constructor(private readonly firstService: FirstService) {
+    constructor(
+        private readonly firstService: FirstService,
+        private readonly usersService: UsersService
+    ) {
     }
 
     // Static files:  http://localhost:3000/castle.jpeg
@@ -36,6 +41,12 @@ export class FirstControllerController {
             message: message,
             second: second
         };
+    }
+
+    // PATH: http://localhost:3000/first-controller
+    @Get('/')
+    async usersList(): Promise<Users[]> {
+        return await this.usersService.findAll();
     }
 
     //  @Controller, @Get, @Query, @Post, @Body, @Put, @Param, @Delete
