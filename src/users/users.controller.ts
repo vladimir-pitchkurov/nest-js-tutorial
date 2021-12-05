@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UsersService } from "./users.service";
+import { CreateUserDto } from "./CreateUserDTO";
 
 /**
  * Doc:  https://docs.nestjs.com/cli/usages#nest-generate
@@ -35,7 +36,7 @@ export class UsersController {
      * }
      * */
     @Post('create')
-    create(@Body() body: object) {
+    create(@Body() body: CreateUserDto) {
         return this.usersService.saveUser(body);
     }
 }

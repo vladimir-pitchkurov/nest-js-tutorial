@@ -20,7 +20,6 @@ export class UsersService {
      *
      *
      * */
-
     async saveUser(user_data) {
         try {
             const salt = await bcrypt.genSalt();
